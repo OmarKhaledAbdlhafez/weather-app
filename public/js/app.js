@@ -9,7 +9,7 @@ from.addEventListener('submit',(e)=>{
   const loc = search.value
   msg1.textContent="Loading"
   msg2.textContent =" "
-  fetch('http://localhost:3000/weather?location='+loc).then((response)=>{
+  fetch('/weather?location='+loc).then((response)=>{
     response.json().then((data)=>{
       if (data.error) {
         msg1.textContent=data.error

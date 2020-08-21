@@ -5,14 +5,17 @@ const request = require('request')
 const geocode = require('./utils/geocode')
 const weather = require('./utils/weather')
 const app = express()
+//paths
 const publicDirectoryPath = path.join(__dirname, '../public')
 const viewspath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
+//static
 app.use(express.static(publicDirectoryPath))
+//set
 app.set('view engine', 'hbs');
 app.set('views',viewspath);
 hbs.registerPartials(partialsPath)
-
+const port = process.env.Port || 3000
 app.get('/', function (req, res) {
   res.render('index', {
         title: 'Weather',
@@ -64,6 +67,6 @@ app.get('*', (req, res) => {
         errorMessage: 'Page not found.'
     })
 })
-app.listen(3000,()=>{
-  console.log('listen on port 3000');
+app.listen(port,()=>{
+  console.log('listen on port'+ port );
 })
